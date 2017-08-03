@@ -1,0 +1,60 @@
+﻿<Window x:Class="GongDD_PrismRegion.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:dd="urn:gong-wpf-dragdrop"
+        xmlns:local="clr-namespace:GongDD_PrismRegion"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="200">
+    <Grid Background="LightBlue">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- This works fine -->
+        <ItemsControl VerticalAlignment="Center" HorizontalAlignment="Center"
+                      Background="Green"
+                      Grid.Row="0" Grid.Column="0"
+                      dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.UseDefaultDragAdorner="True">
+
+            <ItemsControl>[ITEM A]</ItemsControl>
+            <ItemsControl>[ITEM B]</ItemsControl>
+            <ItemsControl>[ITEM C]</ItemsControl>
+            <ItemsControl>[ITEM D]</ItemsControl>
+            <ItemsControl>[ITEM E]</ItemsControl>
+            
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+        </ItemsControl>               
+        
+
+        <!-- This does not work -->
+        <ItemsControl VerticalAlignment="Center" HorizontalAlignment="Center"
+                      Background="Red"
+                      Grid.Row="0" Grid.Column="1"
+                      dd:DragDrop.IsDragSource="True"
+                      dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.UseDefaultDragAdorner="True"
+                      prism:RegionManager.RegionName="PrismRegion">
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+        </ItemsControl>
+
+    </Grid>
+</Window>
